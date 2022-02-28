@@ -46,9 +46,11 @@ contract Ballot {
         }
     }
 
-    // Give `voter` the right to vote on this ballot.
+    // Give each address in `voters` array the right to vote on this ballot.
     // May only be called by `chairperson`.
-    function giveRightToVote(address voter) external {
+    // If any of the voters have already voted or have a weight different from
+    // 0, then they will be skipped and the transaction will not revert.
+    function giveRightToVote(address[] memory _voters) external {
         // If the first argument of `require` evaluates
         // to `false`, execution terminates and all
         // changes to the state and to Ether balances
@@ -63,12 +65,14 @@ contract Ballot {
             msg.sender == chairperson,
             "Only chairperson can give right to vote."
         );
-        require(
-            !voters[voter].voted,
-            "The voter already voted."
-        );
-        require(voters[voter].weight == 0);
-        voters[voter].weight = 1;
+        // iterate over the _voters array and add voter if conditions are met
+        for (uint i = 0; i < _voters.length; i++) {
+            if (voters[_voters[i]].voted) // already voted
+                continue; 
+            if (voters[_voters[i]].weight != 0) // weight different than 0
+                continue;
+            voters[_voters[i]].weight = 1;
+        }
     }
 
     /// Delegate your vote to the voter `to`.
