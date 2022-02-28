@@ -1,0 +1,23 @@
+{
+  "name": "zku-background-assignment",
+  "version": "1.0.0",
+  "description": "Background Assignment for ZKU",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/banescusebi/zku-background-assignment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/banescusebi/zku-background-assignment/issues"
+  },
+  "homepage": "https://github.com/banescusebi/zku-background-assignment#readme",
+  "devDependencies": {
+    "hardhat": "^2.8.4"
+  }
+}
